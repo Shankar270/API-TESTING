@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "caac96fa-c1fd-4cea-bdfb-0342c8173309",
+		"name": "studentapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27193713",
+		"_collection_link": "https://martian-shadow-971837.postman.co/workspace/myworkspace~920de8cd-3315-41f5-abac-b7c8a13ba721/collection/27193713-caac96fa-c1fd-4cea-bdfb-0342c8173309?action=share&creator=27193713&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "myfolder",
+			"item": [
+				{
+					"name": "getallstudentsdetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									" pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Successful POST request\", () => {\r",
+									"pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Scott\",\r\n    \"location\": \"France\",\r\n    \"phone\": \"123456\",\r\n    \"courses\": [\r\n        \"C\",\r\n        \"C++\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Scott\",\r\n    \"location\": \"Germany\",\r\n    \"phone\": \"654321\",\r\n    \"courses\": [\r\n        \"C#\",\r\n        \"C++\"\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/students/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/students/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getsinglestudentdata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									" pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Successful POST request\", () => {\r",
+									"pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Length header is present\", () => {\r",
+									" pm.response.to.have.header(\"Content-Length\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Length header is application/json\", () => {\r",
+									" pm.expect(pm.response.headers.get('Content-Length')).to.eql('126');\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									" pm.expect(pm.response.responseTime).to.be.below(70);\r",
+									"});\r",
+									"\r",
+									"//test body\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									" pm.expect(jsonData).to.be.an(\"object\");\r",
+									" pm.expect(jsonData.name).to.be.a(\"string\");\r",
+									" pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									" pm.expect(jsonData.courses).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"value of location field is India\",()=> {\r",
+									" var jsonData = pm.response.json();\r",
+									" pm.expect(jsonData.id).to.eql(1);\r",
+									" pm.expect(jsonData.name).to.eql(\"John\");\r",
+									" pm.expect(jsonData.location).to.eql(\"india\");\r",
+									" pm.expect(jsonData.phone).to.eql(\"1234567890\");\r",
+									" pm.expect(jsonData.courses[0]).to.eql(\"Java\");\r",
+									" pm.expect(jsonData.courses[1]).to.eql(\"Selenium\");\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/students/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"students",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
